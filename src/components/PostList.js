@@ -31,6 +31,7 @@ export default class PostList extends Component {
           ))}
         </ul>
       </Layout>
+      
     )
   }
 }
