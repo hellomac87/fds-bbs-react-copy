@@ -8,8 +8,13 @@ class Layout extends Component {
                 <div className="header">
                     header
                     <UserConsumer>
-                        {({user}) => {
-                            return <div>사용자명: {user.username}</div>
+                        {({ user, logout}) => {
+                            return (
+                                <React.Fragment>
+                                    <div>사용자명: {user.username}</div>
+                                    {user.username ? <button onClick={logout}>logout</button> : <button>login</button>}
+                                </React.Fragment>
+                            )
                         }}
                     </UserConsumer>
                 </div>

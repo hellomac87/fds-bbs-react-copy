@@ -16,6 +16,15 @@ class UserProvider extends Component {
             await this.refreshUser();
             // TODO: 게시글 목록 보여주기
         }
+        this.logout = () => {
+            localStorage.removeItem('token');
+            this.setState({
+                user: {
+                    id: null,
+                    username: null
+                }
+            })
+        }
 
         this.state = {
             user : {
@@ -23,6 +32,7 @@ class UserProvider extends Component {
                 username: null,
             },
             login: this.login,
+            logout: this.logout,
         }
     }
     refreshUser = async() => {
