@@ -12,7 +12,7 @@ class Layout extends Component {
                             return (
                                 <React.Fragment>
                                     <div>사용자명: {user.username}</div>
-                                    {user.username ? <button onClick={logout}>logout</button> : <button>login</button>}
+                                    {user.username ? <button onClick={logout}>logout</button> : <button onClick={this.props.onLoginFormPage}>login</button>}
                                 </React.Fragment>
                             )
                         }}
