@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import api from '../api';
 
 const {Provider, Consumer: UserConsumer} = React.createContext();
 
@@ -6,15 +7,37 @@ class UserProvider extends Component {
     constructor(props){
         super(props);
 
+        this.login = async (username, password) => {
+            const res = await api.post('/users/login', {
+                username,
+                password
+            })
+            localStorage.setItem('token', res.data.token)
+            await this.refreshUser();
+            // TODO: 게시글 목록 보여주기
+        }
+
         this.state = {
             user : {
-                id: '3',
-                username: 'qwer',
-            }
+                id: null,
+                username: null,
+            },
+            login: this.login,
         }
     }
+    refreshUser = async() => {
+        const { data } = await api.get('/me');
+        this.setState({
+            user: {
+                id: data.id,
+                username: data.username
+            }
+        })
+    } 
     async componentDidMount(){
-
+        if(localStorage.getItem('token')){
+            this.refreshUser();
+        }
     }
     render() {
         return (
