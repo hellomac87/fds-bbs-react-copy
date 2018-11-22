@@ -8,8 +8,14 @@ class Layout extends Component {
                 <div className="header">
                     header
                     <UserConsumer>
-                        {({ user }) => <div>{user.username}</div>}
+                        {({ user, logout }) => 
+                            <React.Fragment>
+                                <div>{user.username}</div>
+                                <button onClick={logout}>logout</button>
+                            </React.Fragment>
+                        }
                     </UserConsumer>  
+                    
                 </div>
                 <h1 className="title">
                     {this.props.title}

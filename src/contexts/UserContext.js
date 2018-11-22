@@ -20,14 +20,26 @@ class UserProvider extends Component {
             // TODO: PostList 보여주기
         }
 
-        
+        this.logout = () => {
+            // 토큰 지우기
+            localStorage.removeItem('token');
+            // 사용자 정보 초기화
+            this.setState({
+                user: {
+                    id: null,
+                    username: null
+                }
+            })
+            // TODO: LoginForm 보여주기
+        }
 
         this.state = {
             user: {
                 id: null,
                 username: null
             },
-            login: this.login
+            login: this.login,
+            logout: this.logout
         }
     }
 
