@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Layout from './Layout';
 import api from '../api';
 
 export default class PostList extends Component {
@@ -22,15 +23,14 @@ export default class PostList extends Component {
     const {posts} = this.state
     const {onPostDetailPage, onNewPostFormPage} = this.props
     return (
-      <div>
+      <Layout title="게시물 목록">
         <button onClick={() => onNewPostFormPage()}>새 글 쓰기</button>
-        <h1>게시물 목록</h1>
         <ul>
           {posts.map(post => (
             <li key={post.id} onClick={() => onPostDetailPage(post.id)}>{post.title}</li>
           ))}
         </ul>
-      </div>
+      </Layout>
     )
   }
 }
