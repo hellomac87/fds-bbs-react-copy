@@ -17,7 +17,7 @@ class UserProvider extends Component {
             localStorage.setItem('token', res.data.token);
 
             await this.refreshUser();
-            // TODO: PostList 보여주기
+            this.props.onPostListPage();
         }
 
         this.logout = () => {
@@ -31,6 +31,8 @@ class UserProvider extends Component {
                 }
             })
             // TODO: LoginForm 보여주기
+            this.props.onLoginFormPage();
+            
         }
 
         this.state = {

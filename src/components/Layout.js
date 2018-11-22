@@ -3,15 +3,23 @@ import { UserConsumer } from '../contexts/UserContext';
 
 class Layout extends Component {
     render() {
+        const { onLoginFormPage } = this.props;
         return (
             <div>
                 <div className="header">
                     header
                     <UserConsumer>
-                        {({ user, logout }) => 
+                        {({ user, login,logout }) => 
                             <React.Fragment>
                                 <div>{user.username}</div>
-                                <button onClick={logout}>logout</button>
+                                {
+                                    user.username ? (
+                                        <button onClick={logout}>logout</button>
+                                    ):(
+                                        <button onClick={onLoginFormPage}>login</button>
+                                    )
+                                }
+                                
                             </React.Fragment>
                         }
                     </UserConsumer>  
