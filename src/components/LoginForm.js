@@ -35,11 +35,24 @@ class LoginForm extends React.Component {
   }
 }
 
-export default (props) => (
-  <UserConsumer>
-    {
-      ({login}) => <LoginForm {...props} login={login} />
-    }
-  </UserConsumer>
-)
-  
+// export default (props) => (
+//   <UserConsumer>
+//     {
+//       ({login}) => <LoginForm {...props} login={login} />
+//     }
+//   </UserConsumer>
+// )
+
+function withUser(WrapperComponent){
+  return (props) => {
+    return(
+      <UserConsumer>
+        {
+          value => <WrapperComponent {...props} {...value}/>
+        }
+      </UserConsumer>
+    )
+  }
+}
+
+export default withUser(LoginForm);
