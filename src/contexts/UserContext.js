@@ -71,7 +71,7 @@ class UserProvider extends Component {
 }
 
 function withUser (WrappedComponent) {
-    return function(props){
+    function WithUser(props){
         return (
             <UserConsumer>
                 {
@@ -80,6 +80,12 @@ function withUser (WrappedComponent) {
             </UserConsumer>
         )
     }
+    WithUser.displayName = `WithUser(${getDisplayName(WrappedComponent)})`
+    return WithUser;
+}
+
+function getDisplayName(WrappedComponent) {
+    return WrappedComponent.displayName || WrappedComponent.name || 'Component';
 }
 
 export { 
