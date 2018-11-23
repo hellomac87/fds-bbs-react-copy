@@ -1,5 +1,5 @@
 import React from 'react'
-import { UserConsumer } from '../contexts/UserContext';
+import { withUser } from '../contexts/UserContext';
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -33,13 +33,5 @@ class LoginForm extends React.Component {
     )
   }
 }
-function withUser(WrapperComponent){
-  return (props) => {
-    return(
-      <UserConsumer>
-        {value => <WrapperComponent {...props} {...value}/>}
-      </UserConsumer>
-    )
-  }
-}
+
 export default withUser(LoginForm);

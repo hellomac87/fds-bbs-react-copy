@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import {UserConsumer} from '../contexts/UserContext';
+import { withUser} from '../contexts/UserContext';
 import Layout from './Layout';
 import api from '../api';
 
-export default class PostDetail extends Component {
+class PostDetail extends Component {
 
   constructor(props) {
     super(props)
@@ -25,22 +25,19 @@ export default class PostDetail extends Component {
   }
   
   render() {
-    const {postId, onEditPostFormPage} = this.props
+    const {user, postId, onEditPostFormPage} = this.props
     const { title, body, userId} = this.state
 
     return (
       <Layout title="게시물">
-        <UserConsumer>
-          {
-            ({user}) => {
-              return user.id === userId ? <button onClick={() => onEditPostFormPage(postId)}>수정</button> : null
-            }
-          }
-        </UserConsumer>
-  
+        {
+          user.id === userId ? <button onClick={() => onEditPostFormPage(postId)}>수정</button> : null
+        }
         <div>{title}</div>
         <div>{body}</div>
       </Layout>
     )
   }
 }
+
+export default withUser(PostDetail)

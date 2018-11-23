@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import api from '../api';
 
-const { Provider, Consumer } = React.createContext();
+const { Provider, Consumer: UserConsumer } = React.createContext();
 
 class UserProvider extends Component {
     constructor(props){
@@ -70,7 +70,20 @@ class UserProvider extends Component {
     }
 }
 
+function withUser (WrappedComponent) {
+    return function(props){
+        return (
+            <UserConsumer>
+                {
+                    (value) => <WrappedComponent {...props} {...value}/>
+                }
+            </UserConsumer>
+        )
+    }
+}
+
 export { 
     UserProvider,
-    Consumer as UserConsumer
+    UserConsumer,
+    withUser
 };

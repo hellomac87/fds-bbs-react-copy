@@ -1,29 +1,23 @@
 import React, { Component } from 'react';
-import { UserConsumer } from '../contexts/UserContext';
+import { withUser } from '../contexts/UserContext';
 
 class Layout extends Component {
     render() {
-        const { onLoginFormPage } = this.props;
+        const { onLoginFormPage, logout, user } = this.props;
         return (
             <div>
                 <div className="header">
                     header
-                    <UserConsumer>
-                        {({ user, login,logout }) => 
-                            <React.Fragment>
-                                <div>{user.username}</div>
-                                {
-                                    user.username ? (
-                                        <button onClick={logout}>logout</button>
-                                    ):(
-                                        <button onClick={onLoginFormPage}>login</button>
-                                    )
-                                }
-                                
-                            </React.Fragment>
+                    <React.Fragment>
+                        <div>{user.username}</div>
+                        {
+                            user.username ? (
+                                <button onClick={logout}>logout</button>
+                            ):(
+                                <button onClick={onLoginFormPage}>login</button>
+                            )
                         }
-                    </UserConsumer>  
-                    
+                    </React.Fragment>
                 </div>
                 <h1 className="title">
                     {this.props.title}
@@ -35,4 +29,4 @@ class Layout extends Component {
     }
 }
 
-export default Layout;
+export default withUser(Layout);
