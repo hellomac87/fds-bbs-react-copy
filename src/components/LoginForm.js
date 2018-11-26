@@ -1,4 +1,5 @@
 import React from 'react'
+import { Button, Form } from 'semantic-ui-react'
 import { withUser } from '../contexts/UserContext';
 
 class LoginForm extends React.Component {
@@ -21,14 +22,17 @@ class LoginForm extends React.Component {
     const {onRegister} = this.props;
     return (
         <React.Fragment>
-        <form onSubmit={(e) => this.handleSubmit(e)}>
-            <h1>로그인</h1>
-            <input ref={this.usernameRef} type="text" name="username" />
-            <input ref={this.passwordRef} type="password" name="password" />
-
-            <button>로그인</button>
-          </form>
-          <button onClick={() => onRegister()}>회원 가입</button>
+          <h1>로그인</h1>
+        <Form onSubmit={(e) => this.handleSubmit(e)}>
+            <Form.Field>
+              <Form.Input label="username" type="text" name="username" />
+            </Form.Field>
+            <Form.Field>
+              <Form.Input label="password" type="password" name="password" />
+            </Form.Field>
+            <Form.Button primary type='submit'>로그인</Form.Button>
+          </Form>
+          <Button onClick={() => onRegister()}>회원 가입</Button>
         </React.Fragment>
     )
   }
