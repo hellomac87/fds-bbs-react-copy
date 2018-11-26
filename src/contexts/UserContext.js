@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import api from '../api';
 
-const { Provider, Consumer: UserConsumer } = React.createContext();
+const { Provider, Consumer: UserConsumer } = React.createContext({
+    user: {
+        id: 0,
+        username: 'fast'
+    },
+    login: () => {},
+    logout: () => {}
+});
 
 class UserProvider extends Component {
     constructor(props){

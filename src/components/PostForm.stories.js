@@ -8,4 +8,4 @@ import PostForm from './PostForm';
 
 storiesOf('PostForm', module)
   .add('default', () => <PostForm />)
-  .add('editing', () => <PostForm editing={true}/>);
+  .add('editing', () => <PostForm editing={true}/>)
