@@ -11,7 +11,8 @@ class PostDetail extends Component {
         this.state = {
             body: '',
             title: '',
-            userId: null
+            userId: null,
+            loading: true
         }
     }
 
@@ -20,13 +21,14 @@ class PostDetail extends Component {
         this.setState({
             title,
             body,
-            userId
+            userId,
+            loading: false
         })
     }
 
     render() {
         const {onEditPostFormPage, postId, user } = this.props;
-        const { title, body, userId } = this.state;
+        const { title, body, userId, loading } = this.state;
         // console.log
         return (
             <PostDetailView 
@@ -36,6 +38,7 @@ class PostDetail extends Component {
                 title={title}
                 body={body}
                 user={user}
+                loading={loading}
             />
         );
     }

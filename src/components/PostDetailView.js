@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import WithLoading from '../HOC/withLoading';
 import Layout from './Layout';
 
 class PostDetailView extends Component {
@@ -16,4 +17,4 @@ class PostDetailView extends Component {
   }
 }
 
-export default PostDetailView;
+export default WithLoading(PostDetailView);
