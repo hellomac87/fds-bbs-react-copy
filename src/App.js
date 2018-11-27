@@ -4,8 +4,8 @@ import './App.css';
 
 import LoginForm from './components/LoginForm'
 import RegisterForm from './components/RegisterForm'
-import PostList from './components/PostList'
-import PostDetail from './containers/PostDetail';
+import PostListPage from './Pages/PostListPage';
+import PostDetailPage from './Pages/PostDetailPage';
 import NewPostForm from './components/NewPostForm';
 import EditPostForm from './components/EditPostForm';
 
@@ -75,13 +75,13 @@ class App extends Component {
           ) : this.state.page === 'register' ? (
             <RegisterForm />
           ) : this.state.page === 'post-list' ? (
-            <PostList
+            <PostListPage
               onPostDetailPage={postId => this.handlePostDetailPage(postId)}
               onNewPostFormPage={() => this.handleNewPostFormPage()}
               onLoginFormPage={() => this.handleLoginFormPage()}
             />
           ) : this.state.page === 'post-detail' ? (
-            <PostDetail postId={this.state.postId} onEditPostFormPage={postId => this.handleEditPostFormPage(postId)} />
+              <PostDetailPage postId={this.state.postId} onEditPostFormPage={postId => this.handleEditPostFormPage(postId)} />
           ) : this.state.page === 'new-post-form' ? (
             <NewPostForm onPostDetailPage={postId => this.handlePostDetailPage(postId)} />
           ) : this.state.page === 'edit-post-form' ? (

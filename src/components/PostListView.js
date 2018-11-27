@@ -1,34 +1,16 @@
 import React, { Component } from 'react'
-import Layout from './Layout';
-import api from '../api';
+import WithLoading from '../HOC/withLoading';
 import classNames from 'classnames'
 
 import './PostList.scss';
 
-export default class PostList extends Component {
-  constructor(props) {
-    super(props)
-  
-    this.state = {
-      posts: [],
-      loading: true
-    }
-  }
-  
-  async componentDidMount() {
-    const res = await api.get('/posts')
-    this.setState({
-      posts: res.data,
-      loading: false
-    })
-  }
-
+class PostList extends Component {
   render() {
-    const { posts, loading} = this.state;
-    const { onPostDetailPage, onNewPostFormPage, onLoginFormPage} = this.props;
+    
+    const { posts, onPostDetailPage, onNewPostFormPage, loading} = this.props;
     const titleClass = classNames('PostList__title', { 'PostList__title--loading': loading })
+    
     return (
-      <Layout title="게시물 목록" onLoginFormPage={onLoginFormPage}>
       <div className="PostList">
           <button onClick={() => onNewPostFormPage()}>새 글 쓰기</button>
           <h1 className={titleClass}>게시물 목록</h1>
@@ -40,8 +22,7 @@ export default class PostList extends Component {
             ))}
           </ul>
       </div>
-      </Layout>
-      
     )
   }
 }
+export default WithLoading(PostList)
