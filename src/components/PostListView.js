@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import WithLoading from '../HOC/withLoading';
 import classNames from 'classnames';
+import {Helmet} from 'react-helmet';
 
 import './PostList.scss';
 
@@ -12,6 +13,10 @@ class PostList extends Component {
     });
 
     return (
+      <React.Fragment>
+        <Helmet>
+        <title>게시물 목록</title>
+        </Helmet>
       <div className="PostList">
         <button onClick={() => onNewPostFormPage()}>새 글 쓰기</button>
         <h1 className={titleClass}>게시물 목록</h1>
@@ -27,6 +32,8 @@ class PostList extends Component {
           ))}
         </ul>
       </div>
+      </React.Fragment>
+      
     );
   }
 }
