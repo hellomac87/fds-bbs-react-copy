@@ -4,7 +4,6 @@ import Layout from './Layout';
 class PostDetailView extends Component {
   render() {
     const { user, postId, onEditPostFormPage, userId, title, body} = this.props;
-
     return (
       <Layout title="게시물">
         {

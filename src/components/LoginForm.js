@@ -3,6 +3,15 @@ import { Button, Form } from 'semantic-ui-react'
 import { withUser } from '../contexts/UserContext';
 
 class LoginForm extends React.Component {
+  static defaultProps = {
+    // 사용자가 로그인 폼을 전송했을 때 호출되는 함수
+    // Params :: username, password
+    login: (username, password) => {} ,
+    // 회원가입 버튼을 눌렀을때 호출되는 함수
+    // 함수를 반드시 넘겨줘야 함
+    onRegister: null,
+    
+  }
   constructor(props) {
     super(props)
   

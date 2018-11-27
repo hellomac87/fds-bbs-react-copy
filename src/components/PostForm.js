@@ -4,13 +4,28 @@ import classNames from 'classnames';
 
 
 // defaultValue에 다른 값을 또 넣어주지 않도록 주의
-export default class PostForm extends Component {
+class PostForm extends Component {
+
+  static defaultProps = {
+    // true :: 편집 스타일, false :: 새글쓰기 스타일
+    editing: false,
+    // form 전송시 호출되는 함수, prams : title,body
+    onSubmit: () => {}
+  }
+
+
   render() {
     const { editing } = this.props;
     const titleClass = classNames(styles.titleInput, { [styles.editing]: editing })
     return (
       <div>
-        <form onSubmit={e => this.props.onSubmit(e)}>
+        <form onSubmit={e => {
+          e.preventDefault();
+          const title = e.target.elements.title.value;
+          const body = e.target.elements.body.value;
+
+          this.props.onSubmit(title, body);
+        }}>
           <input 
             className={titleClass}
             type="text" name="title" defaultValue={this.props.title} 
@@ -22,3 +37,6 @@ export default class PostForm extends Component {
     )
   }
 }
+
+
+export default PostForm;
