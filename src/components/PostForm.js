@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Button, Form } from 'semantic-ui-react'
 import styles from './PostForm.module.scss';
 import classNames from 'classnames';
 
@@ -19,20 +20,20 @@ class PostForm extends Component {
     const titleClass = classNames(styles.titleInput, { [styles.editing]: editing })
     return (
       <div>
-        <form onSubmit={e => {
+        <Form onSubmit={e => {
           e.preventDefault();
           const title = e.target.elements.title.value;
           const body = e.target.elements.body.value;
 
           this.props.onSubmit(title, body);
         }}>
-          <input 
+          <Form.Input 
             className={titleClass}
             type="text" name="title" defaultValue={this.props.title} 
           />
-          <textarea name="body" cols="30" rows="10" defaultValue={this.props.body}></textarea>
-          <button>전송</button>
-        </form>
+          <Form.TextArea name="body" cols="30" rows="10" defaultValue={this.props.body}></Form.TextArea>
+          <Form.Button>전송</Form.Button>
+        </Form>
       </div>
     )
   }
