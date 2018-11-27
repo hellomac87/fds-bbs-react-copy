@@ -7,10 +7,10 @@ import { linkTo } from '@storybook/addon-links';
 import PostForm from './PostForm';
 
 const actions = {
-  onSubmit : action('onSubmit')
-}
+  onSubmit: action('onSubmit'),
+};
 
 storiesOf('PostForm', module)
   .add('default', () => <PostForm {...actions} />)
   // .add('editing', () => <PostForm {...actions} editing={true}/>)
-  .add('editing', () => <PostForm onSubmit={linkTo('PostDetailView')}/>)
+  .add('editing', () => <PostForm onSubmit={linkTo('PostDetailView')} />);
